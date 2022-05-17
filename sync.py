@@ -29,14 +29,21 @@ def getCollectionId(zotero, collection_name):
             return collection.get('data').get('key')
 
 def getPapersTitleAndPathsFromZoteroCollection(zotero, collection_id, STORAGE_BASE_PATH):
-    papers = []
+    papers = {}
     collection_items = zotero.collection_items(collection_id);
     for item in collection_items:
         if(item.get('data').get('contentType') == 'application/pdf') and item.get('data').get('linkMode') == 'linked_file':
             item_pdf_path = STORAGE_BASE_PATH + item.get('data').get('path')[12:]
             item_title = item.get('data').get('title')[:-4]
             if (item_pdf_path and item_title):
-                papers.append({ 'title': item_title, 'path': item_pdf_path })
+                papers[item_title] = item_pdf_path
+        elif(item.get('data').get('contentType') == 'application/pdf') and item.get('data').get('linkMode') == 'imported_url':
+            item_pdf_path = STORAGE_BASE_PATH + f"/Zotero/storage/{item.get('data').get('key')}/{item.get('data').get('filename')}"
+            item_title = item.get('data').get('title')[:-4]
+            if (item_pdf_path and item_title):
+                papers[item_title] = item_pdf_path
+    # Put in correct format
+    papers = [{'title': title, 'path': path } for title,path in papers.items()]
     return papers
 
 def getPapersFromRemarkable(RMAPI_LS):
