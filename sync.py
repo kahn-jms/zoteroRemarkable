@@ -1,8 +1,10 @@
+#!/usr/bin/env python
 from pyzotero import zotero as pyzotero
 from pydash import _
 import os
 import subprocess
 from dotenv import load_dotenv
+load_dotenv(f'{os.environ["HOME"]}/.config/zoteroRemarkable/.env')
 load_dotenv()
 
 # import pprint

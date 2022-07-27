@@ -4,10 +4,11 @@ import logging
 # user config variables. set these in a .env
 # Eventually want an install script that queries for these
 REMARKABLE_IP = "10.11.99.1"
-LOCAL_BACKUP_PATH = "/home/jkahn/Documents/Nextcloud/ReMarkable/"
+LOCAL_BACKUP_PATH = "/home/jkahn/Documents/Nextcloud/ReMarkable/backup"
+SSH_KEYPATH = '/home/jkahn/.ssh/id_rsa'
 
 # These should be constant, can stay hardcoded
-RSYNC_CMD = "rsync -aruq --timeout=2"
+RSYNC_CMD = f"rsync -aruq --timeout=2 -e 'ssh -i {SSH_KEYPATH}'"
 STORAGE_BASE = ".local/share/remarkable/xochitl/"
 MAX_RETRIES = 3
 

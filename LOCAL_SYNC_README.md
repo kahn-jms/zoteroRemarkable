@@ -23,4 +23,6 @@ It only works with RSA keys, ecdsa won't work.
    the IP address of your remarkable.
    The IP address is the one you go to when using the USB web interface (you don't 
    need the web interface activated for this to work).
-2. Then copy ``
+2. Then copy `backup_remarkable.py` to `~/.local/bin/` or `/usr/local/bin/`
+   NOTE: Check ownership requirements.
+3. 
