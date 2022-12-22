@@ -74,7 +74,9 @@ def uploadPapers(papers):
     print(f'uploading {len(papers)} papers')
     for paper in papers:
         path = paper.get('path')
-        COMMAND = f"rmapi put \"{path}\" /{FOLDER_NAME}"
+        # Replace this with p2r call
+        # COMMAND = f"rmapi put \"{path}\" /{FOLDER_NAME}"
+        COMMAND = f"p2r -p {FOLDER_NAME}/ \"{path}\""
         try:
             print(COMMAND)
             os.system(COMMAND)
